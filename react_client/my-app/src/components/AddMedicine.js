@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
 
-class NavBarComponent extends Component {
+class AddMedicine extends Component {
   constructor() {
    super();
    this.state = {
-     id: "",name:'',Brand:'',tab:'',
+     id: "",name:'',brand:'',tab:'',
    }
 this.inputChangeHandler=this.inputChangeHandler.bind(this);
 this.idhandleChange=this.idhandleChange.bind(this);
@@ -35,12 +35,12 @@ this.tabhandleChange=this.tabhandleChange.bind(this);
       name
   });}
   brandhandleChange(event) {
-    //  console.log("handbrand"+this.brand.id);
-      let Brand=this.state.brand;
-      Brand=event.target.value;
+      console.log("handbrand"+this.state.brand);
+      let brand=this.state.brand;
+      brand=event.target.value;
 
     this.setState({
-      Brand
+      brand
     });
 }
 tabhandleChange(event) {
@@ -57,12 +57,12 @@ meess(){
   console.log("inside add");
   const id=this.state.id;
   const name=this.state.tab;
-  const branch=this.state.branch;
-  console.log("addid"+id+branch);
+  const brand=this.state.brand;
+  console.log("addid"+id+brand);
 
 
 
-  axios.post(`http://localhost:3001/add/${id}/${name}/${branch}`)
+  axios.post(`http://localhost:3001/add/${id}/${name}/${brand}`)
   .then(res => {
     console.log(res);
     console.log(res);
@@ -92,12 +92,12 @@ meess(){
       console.log("inside add");
       const id=this.state.id;
       const name=this.state.tab;
-      const branch=this.state.branch;
-  console.log("addid"+id+branch);
+      const brand=this.state.brand;
+  console.log("addid"+id+brand);
 
 
 
-  axios.post(`http://localhost:3001/add/${id}/${name}/${branch}`)
+  axios.post(`http://localhost:3001/add/${id}/${name}/${brand}`)
       .then(res => {
         console.log(res);
         console.log(res);
@@ -141,9 +141,9 @@ meess(){
 
    Tab name: <input type="text" name="name" onChange={this.namehandleChange} value={this.state.name} ></input><br/>
     Tablet: <input type="text" name="tab" onChange={this.tabhandleChange} value={this.state.tab}></input><br/>
-   Brand: <input list="Brand" name="Brand" onChange={this.brandhandleChange} value={this.state.Brand} ></input>
+   Brand: <input list="brand" name="brand" onChange={this.brandhandleChange} value={this.state.brand} ></input>
 
-  <datalist id="Brand" onChange={this.brandhandleChange}>
+  <datalist id="brand" onChange={this.brandhandleChange}>
     <option value="Tablet"/>
     <option value="Syrap"/>
     <option value="cream"/>
@@ -161,4 +161,4 @@ meess(){
   }};
 
 
-  export default NavBarComponent;
+  export default AddMedicine;

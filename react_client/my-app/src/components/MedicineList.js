@@ -6,7 +6,7 @@ import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
 //class Show extends Component {
 
 
-export default class Show extends React.Component{
+export default class MedicineList extends React.Component{
   state = {
     medi: [],
   }
@@ -47,9 +47,9 @@ export default class Show extends React.Component{
       <div>
       <form>
 <ul>
-       { this.state.medi.map(medi => <li>Name : {medi.name} Brand : {medi.Brand}
+       { this.state.medi.map(medi => <li>ID: {medi.id}   Name : {medi.name} Brand : {medi.Brand}
       <br></br>   <a href="/update">Update</a> &nbsp;
-      
+
     <button type="sumbit" onClick={this.deleteHandler.bind(this,medi.id)}>Delete</button>
 <br></br>
          </li> )}
