@@ -13,13 +13,16 @@ export default class MedicineList extends React.Component{
 
   deleteHandler(mediid){
     console.log("mediid"+this.state.medi.id);
-    console.log("id"+this.state.id);
+    alert("id"+mediid);
 
     axios.delete(`http://localhost:3001/delete/${mediid}`)
         .then(res => {
           console.log(res);
           console.log(res.data);
           const medi = res.data.data;
+          if (res.status==200){
+            alert("Product got Deleted !!");
+          }
        this.setState({ medi });
   })
   }
@@ -40,16 +43,25 @@ export default class MedicineList extends React.Component{
       .catch(e=>{
         console.log(e);
       });
-  }
+}
+      updateHandler(){
+        alert("update");
+      }
+
 
   render() {
     return (
       <div>
       <form>
 <ul>
-       { this.state.medi.map(medi => <li>ID: {medi.id}   Name : {medi.name} Brand : {medi.Brand}
-      <br></br>   <a href="/update">Update</a> &nbsp;
+       { this.state.medi.map(medi => <li class="borderlist">
+       <br></br>
+       ID: {medi.id} <br></br> Name : {medi.name}  <br></br> Type : {medi.type}
+       <br></br>      Manufacturer: {medi.Manufacturer}  <br></br> Batch No : {medi.BatchNo} <br></br>
+      Expiration Date: {medi.ExpirationDate} <br></br>  Price : {medi.Price}
 
+<br></br>
+  <button type="sumbit" onClick={this.updateHandler.bind(this,medi.id)}>Update</button>&nbsp;&nbsp;
     <button type="sumbit" onClick={this.deleteHandler.bind(this,medi.id)}>Delete</button>
 <br></br>
          </li> )}

@@ -6,13 +6,18 @@ class AddMedicine extends Component {
   constructor() {
    super();
    this.state = {
-     id: "",name:'',brand:'',tab:'',
+     id: "",names:'',brand:'',man:'',bat:'',ed:'',price:'',
    }
-this.inputChangeHandler=this.inputChangeHandler.bind(this);
+
 this.idhandleChange=this.idhandleChange.bind(this);
 this.nameshandleChange=this.nameshandleChange.bind(this);
 this.brandhandleChange=this.brandhandleChange.bind(this);
-this.tabhandleChange=this.tabhandleChange.bind(this);
+this.manhandleChange=this.manhandleChange.bind(this);
+this.bathandleChange=this.bathandleChange.bind(this);
+this.edhandleChange=this.edhandleChange.bind(this);
+this.pricehandleChange=this.pricehandleChange.bind(this);
+this.addHandler=this.addHandler.bind(this);
+
   }
 
 
@@ -28,11 +33,11 @@ this.tabhandleChange=this.tabhandleChange.bind(this);
   }
   nameshandleChange(event){
     console.log("namehand");
-    let name=this.state.name;
-    name=event.target.value;
+    let names=this.state.names;
+    names=event.target.value;
 
     this.setState({
-      name
+      names
   });}
   brandhandleChange(event) {
       console.log("handbrand"+this.state.brand);
@@ -43,15 +48,44 @@ this.tabhandleChange=this.tabhandleChange.bind(this);
       brand
     });
 }
-tabhandleChange(event) {
+manhandleChange(event) {
   //  console.log("handbrand"+this.brand.id);
-    let tab=this.state.tab;
-    tab=event.target.value;
+    let man=this.state.man;
+    man=event.target.value;
 
   this.setState({
-    tab
+    man
   });
 }
+bathandleChange(event) {
+    console.log("handid"+this.state.bat);
+    let bat=this.state.bat;
+    bat=event.target.value;
+
+  this.setState({
+    bat
+  });
+}
+
+edhandleChange(event) {
+    console.log("handid"+this.state.ed);
+    let ed=this.state.ed;
+    ed=event.target.value;
+
+  this.setState({
+    ed
+  });
+}
+pricehandleChange(event) {
+
+    let price=this.state.price;
+    price=event.target.value;
+
+  this.setState({
+    price
+  });
+}
+
 meess(){
   alert("hello");
   console.log("inside add");
@@ -69,7 +103,7 @@ meess(){
     console.log(res.data);
 
     if (res.status==200){
-      alert("Added!!");
+      alert("Product got Added!!");
     }
   // alert(res);
 
@@ -87,17 +121,21 @@ meess(){
       formFields
      });
     }
-    addHandlerBut(){
-
+    addHandler(){
+alert("hi"+this.state.names);
       console.log("inside add");
       const id=this.state.id;
-      const name=this.state.tab;
+      const names=this.state.names;
       const brand=this.state.brand;
+      const man=this.state.man;
+      const bat=this.state.bat;
+      const ed=this.state.ed;
+      const price=this.state.price;
   console.log("addid"+id+brand);
 
 
-
-  axios.post(`http://localhost:3001/add/${id}/${name}/${brand}`)
+alert(price);
+  axios.post(`http://localhost:3001/add/${id}/${names}/${brand}/${man}/${bat}/${ed}/${price}`)
       .then(res => {
         console.log(res);
         console.log(res);
@@ -111,46 +149,25 @@ meess(){
 })
 };
 
-  addHandlesr(){
-    console.log("addhan");
-   let id=document.getElementsByName('id');
-   console.log("id"+id);
- let name=document.getElementsByName('name');
- console.log("name"+name);
- let brand=document.getElementsByName('Brand');
- let data={
-          "id": id,
-          "name": name,
-          "Brand": brand
 
-      };
-      console.log("data"+data);
-    axios.post(`http://localhost:3001/add/${data}`)
-        .then(res => {
-          console.log(res);
-          console.log(res.data);
-          alert(res);
-
-  })
-  }
   render() {
     return (<div>
-      <form action="/add" onSubmit={this.addHandlerBut()}>
+      <form action="/add" >
 
-   Tab Id: <input type="text" name="id" onChange={this.idhandleChange} value={this.state.id}></input><br/>
-
-   Tab name: <input type="text" name="name" onChange={this.namehandleChange} value={this.state.name} ></input><br/>
-    Tablet: <input type="text" name="tab" onChange={this.tabhandleChange} value={this.state.tab}></input><br/>
-   Brand: <input list="brand" name="brand" onChange={this.brandhandleChange} value={this.state.brand} ></input>
-
-  <datalist id="brand" onChange={this.brandhandleChange}>
+   ID: <input type="text" name="id" onChange={this.idhandleChange} value={this.state.id}></input><br/>
+   Name: <input type="text" name="names" onChange={this.nameshandleChange} value={this.state.names} ></input><br/>
+    Manufacture: <input type="text" name="man" onChange={this.manhandleChange} value={this.state.man}></input><br/>
+   Type: <input list="brand" name="brand" onChange={this.brandhandleChange} value={this.state.brand} ></input>
+   <datalist id="brand" onChange={this.brandhandleChange}>
     <option value="Tablet"/>
     <option value="Syrap"/>
     <option value="cream"/>
     <option value="other"/>
     </datalist>
-
-    <button type="sumbit" onClick={this.meess} >Add</button>
+     BatchNo: <input type="text" name="bat" onChange={this.bathandleChange} value={this.state.bat}></input><br/>
+     Expiration Date: <input type="date" name="ed" onChange={this.edhandleChange} value={this.state.ed}></input><br/>
+      Price: <input type="price" name="price" onChange={this.pricehandleChange} value={this.state.price}></input><br/>
+    <button type="sumbit" onClick={this.addHandler} >Add</button>
 
 </form>
       </div>

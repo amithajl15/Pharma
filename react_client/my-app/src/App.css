@@ -2,7 +2,10 @@
   text-align: top;
 }
 
-
+.borderlist {
+  border: 1px solid black;
+  list-style-position: inside;
+}
 .App-header {
   background-color: #282c34;
 

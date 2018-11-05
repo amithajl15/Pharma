@@ -11,24 +11,18 @@ var det = JSON.parse(rawdatas);
 
 
 console.log(det);
-//app.get('/', function(req, res) {res.render('index', { title: 'Hey', message: res.send(det) })})
-// =>res.send(det))
 app.get('/',(req,res)=>res.send(det));
 //const fs = require('fs');
-app.post('/add/:id/:name/:Brand', function (req, res) {
-//   let student = {
-//           "id": "4",
-//           "name": "XBC",
-//           "Brand": "500"
-//
-//       };
+app.post('/add/:id/:name/:Brand/:man/:bat/:ed/:price', function (req, res) {
     let  id=req.params.id;
     let name=req.params.name;
     let brand=req.params.Brand;
+    let man=req.params.man;
+    let bat=req.params.bat;
+    let ed=req.params.ed;
+    let price=req.params.price;
     let data = {
-             "id": id,
-              "name": name,
-             "Brand": brand
+             "id":id,"name":name,"type":brand,"Manufacturer":man,"BatchNo":bat,"ExpirationDate":ed,"Price":price
 
       }
     //console.log(req.body);
